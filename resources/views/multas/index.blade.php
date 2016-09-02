@@ -8,8 +8,14 @@
 
             <div class="form-group{{ $errors->has('placa') ? ' has-error' : '' }}">
                 {!! Form::label('placa', 'Buscar Por Placa') !!}
-                {!! Form::text('placa', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                {!! Form::text('placa', null, ['class' => 'form-control']) !!}
                 <small class="text-danger">{{ $errors->first('placa') }}</small>
+            </div>
+
+            <div class="form-group{{ $errors->has('folio') ? ' has-error' : '' }}">
+                {!! Form::label('folio', 'Buscar Por Folio') !!}
+                {!! Form::text('folio', null, ['class' => 'form-control']) !!}
+                <small class="text-danger">{{ $errors->first('folio') }}</small>
             </div>
 
             <div class="btn-group pull-right">

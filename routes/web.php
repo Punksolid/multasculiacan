@@ -23,6 +23,21 @@ Route::get('local', function(\App\Multa $multa){
 Route::get('numero_demultas', function(\App\Multa $multa){
     return Response::json($multa->count());
 });
+Route::get('count/{placa?}', function(\App\Multa $multa,$placa = null){
+
+  $query = $multa
+    ->select('placa','folio', DB::raw('COUNT(*)') )
+    // ->where('placa','=')
+    ->from('multas')
+    ->groupBy('placa')
+    ->havingRaw('count(*) > 1');
+
+  $query = $query->take(10)->get();
+  dd($query->toArray());
+    return Response::json($multa->count());
+});
+
+
 
 Auth::routes();
 

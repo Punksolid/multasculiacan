@@ -40,34 +40,34 @@ class LeerMulta extends Command
      */
     public function handle()
     {
-    $response =  $this->ayuntamiento->request("GET", "https://pagos.culiacan.gob.mx/multas-transito/".$this->argument('folio'));
-    try {
-      $folio = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(0)->html();
+      $response =  $this->ayuntamiento->request("GET", "https://pagos.culiacan.gob.mx/multas-transito/".$this->argument('folio'));
+      try {
+        $folio = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(0)->html();
 
-      $placa = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(1)->html();
-      $importe = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(2)->html();
-      $redondeo = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(3)->html();
+        $placa = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(1)->html();
+        $importe = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(2)->html();
+        $redondeo = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(3)->html();
 
-      $multas_html = $response->filter('tbody')->html();
-      $html = $response->html();
-      $multa = [
-        'folio' => $folio,
-        'placa' => $placa,
-        'importe' => $importe,
-        'redondeo' => $redondeo,
-        'multas_html' =>  $multas_html,
-        'html' =>  $html
-      ];
+        $multas_html = $response->filter('tbody')->html();
+        $html = $response->html();
+        $multa = [
+          'folio' => $folio,
+          'placa' => $placa,
+          'importe' => $importe,
+          'redondeo' => $redondeo,
+          'multas_html' =>  $multas_html,
+          'html' =>  $html
+        ];
 
-      $multa = \App\Multa::create($multa);
+        $multa = \App\Multa::create($multa);
 
-      //$this->info($multa->placa);
-      return true;
-      
-    } catch (\Exception $e) {
-      $this->output = false;
-      //$this->error($this->argument('folio'));
-    }
+        //$this->info($multa->placa);
+        return true;
+
+      } catch (\Exception $e) {
+        $this->output = false;
+        //$this->error($this->argument('folio'));
+      }
 
     }
 }

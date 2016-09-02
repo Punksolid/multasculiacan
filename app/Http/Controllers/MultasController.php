@@ -18,9 +18,9 @@ class MultasController extends Controller
      */
     public function index()
     {
-        $multas = Multa::paginate(50);
+        $multas = Multa::orderBy('folio','DESC')->paginate(50);
 
-        
+
         return view('multas.index')->with(compact('multas'));
     }
 
@@ -114,9 +114,14 @@ class MultasController extends Controller
 
     public function search(Request $request)
     {
-      // dd($request->except('_token'));
+
       $multa = new Multa();
-      $multa = $multa->where('placa', $request->placa);
+
+      if($request->folio != ''){
+        $multa =   $multa->where('folio', $request->folio);
+      } else {
+        $multa = $multa->where('placa', $request->placa);
+      }
 
       $multas = $multa->paginate(50);
 

@@ -10,7 +10,7 @@
         <thead>
         <tr>
           <th>
-            Placa  
+            Placa
           </th>
           <th>
             Folio
@@ -40,7 +40,47 @@
                 {!! $multa->multas_html !!}
             </tbody>
         </table>
-      
+        <strong>Otras multas de la misma placa</strong>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>
+                Folio
+              </th>
+              <th>
+                Placa
+              </th>
+              <th>
+                Importe
+              </th>
+              <th>
+                Acciones
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @forelse($otras_multas as $multa)
+              <tr>
+                <td>
+                  {{ $multa->folio }}
+                </td>
+                <td>
+                  {{ $multa->placa }}
+                </td>
+                <td>
+                  {{ $multa->importe }}
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-default" href="{{ route('multas.show',[$multa->id]) }}" role="button">Ver</a>
+                </td>
+              </tr>
+            @empty
+              <tr>
+                Nuestra base de datos no tiene registro de todas las multas, de momento no tiene otras registradas.
+              </tr>
+            @endforelse
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

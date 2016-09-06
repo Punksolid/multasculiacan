@@ -18,7 +18,7 @@ class MultasController extends Controller
      */
     public function index()
     {
-        $multas = Multa::orderBy('folio','DESC')->paginate(50);
+        $multas = Multa::orderBy('id','DESC')->paginate(50);
 
 
         return view('multas.index')->with(compact('multas'));
@@ -80,7 +80,9 @@ class MultasController extends Controller
 
     public function show($id){
         $multa = Multa::find($id);
-        return view('multas.show')->with('multa', $multa);
+
+        $otras_multas = Multa::where('placa', $multa->placa)->where('folio', '<>', $multa->folio)->get();
+        return view('multas.show')->with('multa', $multa)->with('otras_multas', $otras_multas);
     }
 
     public function extraer_vehiculo($placa, $ciudad = 'Culiacan')

@@ -36,6 +36,9 @@
               <th>
                 Importe
               </th>
+              <th>
+                Acciones
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +52,9 @@
                 </td>
                 <td>
                   {{ $multa->importe }}
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-default" href="{{ route('multas.show',[$multa->id]) }}" role="button">Ver</a>
                 </td>
               </tr>
             @empty

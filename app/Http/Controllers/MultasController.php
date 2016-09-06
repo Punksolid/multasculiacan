@@ -51,7 +51,7 @@ class MultasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showAndDownload($id)
     {
       $ayuntamiento = new \Goutte\Client();
 
@@ -76,6 +76,30 @@ class MultasController extends Controller
         //dd($multa);
         return $html;
 
+    }
+
+    public function show($id){
+        $multa = Multa::find($id);
+        return view('multas.show')->with('multa', $multa);
+    }
+
+    public function extraer_vehiculo($placa, $ciudad = 'Culiacan')
+    {
+      $gobierno_estatal = new \Goutte\Client();
+
+      $responsex =  $gobierno_estatal->request("GET", "https://tramites1.sinaloa.gob.mx/vehicular/pe_01_clave.asp");
+      //$gobierno_estatal->click($responsex->selectButton("images/ImapRecibo."))->link();
+      dd($responsex);
+        $form = $responsex->selectButton('submit2')->form();
+        dd($form->html());
+        $crawler = $client->click($crawler->selectLink('Sign in')->link());
+        $form = $crawler->selectButton('Sign in')->form();
+        $crawler = $client->submit($form, array('login' => 'fabpot', 'password' => 'xxxxxx'));
+        $crawler->filter('.flash-error')->each(function ($node) {
+            print $node->text()."\n";
+        });
+
+        //dd($multa);
     }
 
     /**

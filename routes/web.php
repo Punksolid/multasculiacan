@@ -37,7 +37,7 @@ Route::get('count/{placa?}', function(\App\Multa $multa,$placa = null){
     return Response::json($multa->count());
 });
 
-
+Route::any('extraer_vehiculo/{placa}', 'MultasController@extraer_vehiculo');
 
 Auth::routes();
 

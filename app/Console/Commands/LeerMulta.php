@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
 class LeerMulta extends Command
@@ -41,6 +42,8 @@ class LeerMulta extends Command
      */
     public function handle()
     {
+        $client = new Client();
+
       $response =  $this->ayuntamiento->request("GET", "https://pagos.culiacan.gob.mx/multas-transito/".$this->argument('folio'),["verify" => false]);
       try {
         $folio = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(0)->html();

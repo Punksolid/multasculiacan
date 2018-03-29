@@ -15,8 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $numero_de_multas = Multa::count();
-        \View::share('numero_de_multas', $numero_de_multas);
+
     }
 
     /**

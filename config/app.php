@@ -1,5 +1,7 @@
 <?php
 
+use Laravel\Tinker\TinkerServiceProvider;
+
 return [
 
     /*
@@ -178,6 +180,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        TinkerServiceProvider::class
 
     ],
 

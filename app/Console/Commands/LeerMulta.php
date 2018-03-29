@@ -29,8 +29,9 @@ class LeerMulta extends Command
     {
         parent::__construct();
 
-        //$this->ayuntamiento = new \GuzzleHttp\Client(['base_uri' => 'https://pagos.culiacan.gob.mx/multas-transito/']);
+        $client = new \GuzzleHttp\Client(["verify" => false]);
         $this->ayuntamiento = new \Goutte\Client();
+        $this->ayuntamiento->setClient($client);
     }
 
     /**
@@ -40,7 +41,7 @@ class LeerMulta extends Command
      */
     public function handle()
     {
-      $response =  $this->ayuntamiento->request("GET", "https://pagos.culiacan.gob.mx/multas-transito/".$this->argument('folio'));
+      $response =  $this->ayuntamiento->request("GET", "https://pagos.culiacan.gob.mx/multas-transito/".$this->argument('folio'),["verify" => false]);
       try {
         $folio = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(0)->html();
 
@@ -61,7 +62,12 @@ class LeerMulta extends Command
 
         $multa = \App\Multa::create($multa);
 
-        //$this->info($multa->placa);
+        $this->info($multa->placa);
+        $this->info($multa->folio);
+        $this->info($multa->importe);
+        $this->info($multa->redondeo);
+        $this->info($multa->multas_html);
+//        $this->info($multa->html);
         return true;
 
       } catch (\Exception $e) {

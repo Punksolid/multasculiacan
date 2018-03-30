@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Multa;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use PhpParser\Node\Expr\AssignOp\Mul;
 
 class LeerMulta extends Command
 {
@@ -43,40 +45,51 @@ class LeerMulta extends Command
     public function handle()
     {
         $client = new Client();
+        if (Multa::whereFolio("J".$this->argument('folio'))->exists()){
+//            info("El folio ". $this->argument('folio'). "ya existe");
+        } else {
+            return $this->requestMultaInfo();
 
-      $response =  $this->ayuntamiento->request("GET", "https://pagos.culiacan.gob.mx/multas-transito/".$this->argument('folio'),["verify" => false]);
-      try {
-        $folio = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(0)->html();
+        }
 
-        $placa = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(1)->html();
-        $importe = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(2)->html();
-        $redondeo = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(3)->html();
+    }
 
-        $multas_html = $response->filter('tbody')->html();
-        $html = $response->html();
-        $multa = [
-          'folio' => $folio,
-          'placa' => $placa,
-          'importe' => $importe,
-          'redondeo' => $redondeo,
-          'multas_html' =>  $multas_html,
-          'html' =>  $html
-        ];
+    /**
+     * @return bool
+     */
+    public function requestMultaInfo()
+    {
+        $response = $this->ayuntamiento->request("GET", "https://pagos.culiacan.gob.mx/multas-transito/" . $this->argument('folio'), ["verify" => false]);
+        try {
+            $folio = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(0)->html();
 
-        $multa = \App\Multa::create($multa);
+            $placa = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(1)->html();
+            $importe = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(2)->html();
+            $redondeo = $response->filter('body > div.datos-boleta > div > dl > dd')->eq(3)->html();
 
-        $this->info($multa->placa);
-        $this->info($multa->folio);
-        $this->info($multa->importe);
-        $this->info($multa->redondeo);
-        $this->info($multa->multas_html);
+            $multas_html = $response->filter('tbody')->html();
+            $html = $response->html();
+            $multa = [
+                'folio' => $folio,
+                'placa' => $placa,
+                'importe' => $importe,
+                'redondeo' => $redondeo,
+                'multas_html' => $multas_html,
+                'html' =>  ""
+            ];
+//        $multa = Multa::firstOrCreate()
+            $multa = Multa::create($multa);
+
+//            $this->info($multa->placa);
+//            $this->info($multa->folio);
+//            $this->info($multa->importe);
+//            $this->info($multa->redondeo);
+//            $this->info($multa->multas_html);
 //        $this->info($multa->html);
-        return true;
+            return true;
 
-      } catch (\Exception $e) {
-        $this->output = false;
-        //$this->error($this->argument('folio'));
-      }
-
+        } catch (\Exception $e) {
+            $this->output = false;
+        }
     }
 }

@@ -53,9 +53,9 @@ class MultasController extends Controller
      */
     public function showAndDownload($id)
     {
-      $ayuntamiento = new \Goutte\Client();
+        $ayuntamiento = new \Goutte\Client();
 
-      $responsex=  $ayuntamiento->request("GET", "https://pagos.culiacan.gob.mx/multas-transito/$id");
+        $responsex =  $ayuntamiento->request("GET", "https://pagos.culiacan.gob.mx/multas-transito/$id");
 
         $folio = $responsex->filter('body > div.datos-boleta > div > dl > dd')->eq(0)->html();
 

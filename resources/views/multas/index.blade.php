@@ -53,18 +53,18 @@
                 <td>
                   {{ $multa->importe }}
                 </td>
-                <td>
-                  <a class="btn btn-sm btn-default" href="{{ route('multas.show',[$multa->id]) }}" role="button">Ver</a>
-                </td>
+
+                  <td>
+                      <a class="btn btn-sm btn-default" href="{{ route('multas.show',[$multa->id]) }}" role="button">Ver</a>
+                  </td>
               </tr>
             @empty
-              <tr>
-                No hay multas
-              </tr>
+                <tr>
+                    No hay multas
+                </tr>
             @endforelse
           </tbody>
         </table>
-        {{ dump($multas->toArray() )}}
         {{ $multas->links() }}
       </div>
     </div>

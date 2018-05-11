@@ -1,5 +1,7 @@
 <?php
 
+use App\Multa;
+use Carbon\Carbon;
 use Illuminate\Foundation\Inspiring;
 
 use GuzzleHttp\Client;
@@ -21,19 +23,27 @@ Artisan::command('inspire', function () {
 
 Artisan::command('multas:backup {inicio} {fin}', function ($inicio, $fin) {
   $bar = $this->output->createProgressBar(($fin-$inicio));
-  $fails = [];
-  for ($folio = $inicio; $folio <= $fin ; $folio++) {
-    $output = $this->getOutput(
-      $this->call('multas:leer', [
-        'folio' => $folio
-        ])
+//  $folios = collect();
+//  for ($folio = $inicio; $folio <= $fin; $folio++){
+//      $folios->push("J$folio");
+//  }
+//  $x = Multa::whereIn("folio",$folios->toArray())->count();
+    $carbon = Carbon::now();
+      for ($folio = $inicio; $folio <= $fin ; $folio++) {
+        $output = $this->getOutput(
+          $this->call('multas:leer', [
+            'folio' => $folio
+            ])
 
-    );
+        );
 
     $bar->advance();
   }
   $bar->finish();
-  $this->comment('fin');
+
+    $this->comment('fin');
+    $this->comment($carbon->diffForHumans());
+
 });
 
 Artisan::command('multas:asincrono {inicio} {fin}', function ($inicio, $fin) {

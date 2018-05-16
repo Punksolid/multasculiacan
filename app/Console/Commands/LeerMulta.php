@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Multa;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\AssignOp\Mul;
 
 class LeerMulta extends Command
@@ -45,7 +47,11 @@ class LeerMulta extends Command
     public function handle()
     {
         $client = new Client();
-        if (Multa::whereFolio("J".$this->argument('folio'))->exists()){
+        $folio_number = $this->argument('folio');
+        if (Multa::whereFolio("J". $folio_number)->exists()
+            OR
+            DB::table("failed_attempts")->whereFolio($folio_number)->exists()
+        ){
 //            info("El folio ". $this->argument('folio'). "ya existe");
         } else {
             return $this->requestMultaInfo();
@@ -77,7 +83,10 @@ class LeerMulta extends Command
                 'multas_html' => $multas_html,
                 'html' =>  ""
             ];
-//        $multa = Multa::firstOrCreate()
+//        $multa = Multa::firstOrCreate(
+//            ["folio" => $this->argument('folio')],
+//            $multa
+//        );
             $multa = Multa::create($multa);
 
 //            $this->info($multa->placa);
@@ -89,7 +98,12 @@ class LeerMulta extends Command
             return true;
 
         } catch (\Exception $e) {
-            $this->output = false;
+            DB::table("failed_attempts")->updateOrInsert(
+                ['folio' => $this->argument('folio') ],
+                ["folio" => $this->argument('folio'),
+                    "created_at" => Carbon::now()]
+            );
+//            $this->output = false;
         }
     }
 }

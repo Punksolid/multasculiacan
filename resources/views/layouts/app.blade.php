@@ -88,22 +88,25 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ $numero_de_multas or 'No encontrados' }}
+                   Inicio
+                </a>
+                <a class="navbar-brand" href="{{ url('/multas') }}">
+                   Multas
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        {{--<li><a href="{{ url('/login') }}">Login</a></li>--}}
+                        {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -131,7 +134,10 @@
     </nav>
 
     <script src="{{ asset('js/app.js')}}"></script>
-    @yield('content')
+    <div class="content">
+
+        @yield('content')
+    </div>
 
     <!-- Scripts -->
 

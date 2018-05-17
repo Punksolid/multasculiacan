@@ -1,35 +1,32 @@
 
 new Vue({
   el: '#messages',
+
   data: {
-    someData:'0'
+    someData:'0',
+      notFound:'0'
   },
-  ready() {
 
-      // GET /someUrl
-      this.$http.get('numero_demultas').then((response) => {
-          this.$set('someData', response.json())
+  methods:{
+    fetchNumber:function() {
+        this.$http.get('numero_demultas').then((response) => {
+            this.$set('someData', response.json())
+            // success callback
+        });
 
-
-          // success callback
-      }, (response) => {
-        this.$set('numero_demultas', 'fuckit');
-          // error callback
-      });
-
+        this.$http.get('api/not_found').then((response) => {
+            this.$set('notFound', response.json())
+        });
     }
+  },
 
-  //
-  // methods:{
-  //   fetchMessages:function() {
-  //     this.$http.get('/numero_demultas', function(messages) {
-  //       return this.$set('numero_demultas', messages);
-  //     });
-  //   }
-  // },
-  //
-  // ready:function(){
-  //   this.fetchMessages();
-  // },
+  ready:function(){
+    this.fetchNumber();
+
+      setInterval(function (){
+        this.fetchNumber();
+
+      }.bind(this),2000);
+  }
 
 });

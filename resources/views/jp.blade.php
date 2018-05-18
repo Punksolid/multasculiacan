@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel</title>
+    <title>Razones para votar por Chuy Valdés</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">

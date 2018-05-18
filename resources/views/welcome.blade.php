@@ -34,6 +34,20 @@
                 </div>
             </div>
 
+            <div class="panel">
+                <div class="panel-title">DONA</div>
+                <div class="panel-body">
+                    <img style="width: 15%; height: auto;" src="{{ asset("storage/qrcode.jpg")  }}">
+
+                    Litecoin:LR9DFUSsfK678XerFeQcChs74GuBDGyUpM
+                </div>
+                <div class="panel-body">
+                    <img style="width: 15%; height: auto;" src="{{ asset("storage/chart.png")  }}">
+
+                    Ether:0xb1e261206ef295d072a257ec9f5fa9d1267797af
+                </div>
+            </div>
+
 
         </div>
     </div>

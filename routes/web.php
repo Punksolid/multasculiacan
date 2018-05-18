@@ -42,3 +42,14 @@ Route::any('extraer_vehiculo/{placa}', 'MultasController@extraer_vehiculo');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/jp', function (){
+    $frases = [
+        "fiiiinta!",
+        "así nomás quedó"
+
+    ];
+    $element = array_random($frases);
+
+   return view("jp", ["frase" => $element]);
+});

@@ -42,3 +42,5 @@ Route::any('extraer_vehiculo/{placa}', 'MultasController@extraer_vehiculo');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+

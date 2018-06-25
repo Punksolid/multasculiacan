@@ -43,13 +43,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/jp', function (){
-    $frases = [
-        "fiiiinta!",
-        "así nomás quedó"
 
-    ];
-    $element = array_random($frases);
-
-   return view("jp", ["frase" => $element]);
-});

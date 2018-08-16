@@ -1,11 +1,15 @@
 @extends('layouts.app')
+@section('title', "Detalles de la placa $multa->placa")
+@section('meta-description')
+    <meta name="description" content="Ver detalles de la placa {{$multa->placa or "Sin placa"}}, contiene {{ $otras_multas->count()+1 }}
+            multas con los folios {{ $otras_multas->pluck("folio")}} {{ $multa->folio }} culiacán, sinaloa, ayuntamiento">
+@endsection
+@section("content-title","Ver multas de la placa $multa->placa")
 @section('content')
 <div class="content">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="panel panel-default">
-
-
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default panel-body">
       <table class="table table-hover">
         <thead>
         <tr>
@@ -32,17 +36,32 @@
             <thead>
                 <tr>
                     <th>Concepto</th>
-                    <th>Descripcion</th>
+                    <th>Descripción</th>
                     <th>Importe</th>
                 </tr>
             </thead>
             <tbody>
                 {!! $multa->multas_html !!}
             </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th class="text-right">Total</th>
+                    <th>
+                        {{ $multa->importe }}
+                    </th>
+                </tr>
+            </tfoot>
         </table>
-        <strong>Otras multas de la misma placa</strong>
-        <table class="table">
-          <thead>
+
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-title">
+          <strong>Otras multas de la misma placa</strong>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
             <tr>
               <th>
                 Folio
@@ -57,8 +76,8 @@
                 Acciones
               </th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
             @forelse($otras_multas as $multa)
               <tr>
                 <td>
@@ -79,8 +98,9 @@
                 Nuestra base de datos no tiene registro de todas las multas, de momento no tiene otras registradas.
               </tr>
             @endforelse
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

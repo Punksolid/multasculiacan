@@ -1,11 +1,49 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+body {
+      background-color: #f9f9f9;
+}
+.bg-dark {
+    background-color: #9fa5ab!important;
+}
+.jumbotron {
+    background-color: #ffffff;
+}
+.bienvenida {
+  margin-top: 55px !important;
+  padding: 2rem;
+}
+.card-footer {
+  color: #000;
+  opacity: .4;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #169db2;
+    border-color: #169db2;
+}
+i.fas {
+    margin-right: 5px;
+    padding-right: 10px;
+    border-right: 1px solid #ffffff4a;
+}
+/** FOOTER **/
+footer {
+    background: #FFF;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+/**
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -183,7 +221,7 @@ td,
 th {
   padding: 0; }
 
-/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css
 @media print {
   *,
   *:before,
@@ -5766,4 +5804,6 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=app.css.map
+ 
+ */

@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div>
-            <div class="column col-sm-6">
+            <div class="column col-sm-6 mb-2">
                 <div class="card text-white bg-danger">
                     <h5 class="card-header">
                         <i class="fas fa-times-circle"></i> Folios no encontrados
@@ -44,7 +44,7 @@
 
                 <table class="table table-striped">
                     
-                    <h2>TOP 10 DE PLACAS CON MAS MULTAS</h2>
+                    <h2 class="titulo_lat">TOP 10 DE PLACAS CON MAS MULTAS</h2>
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -68,15 +68,15 @@
 
         <div class="row mb-3" id="donacion">
             <div class="column col-12">
-                <h3 class="mb-2 bg-secundary">DONA</h3>
+                <h3 class="mb-2 bg-secundary titulo_lat">DONA</h3>
             </div>
             
-            <div class="column col-6">
+            <div class="column col-md-6 mb-2">
                 <div class="card flex-row">
                     <div class="card-header border-0">
                        <img src="{{ asset("storage/qrcode.jpg")  }}" width="100" alt="dona en litecoin">
                     </div>
-                    <div class="card-block px-2">
+                    <div class="card-body">
                         <div class="card-title">Donar: Litecoin</div>
                         <div class="card-text text-muted">
                         Litecoin:LR9DFUSsfK678XerFeQcChs74GuBDGyUpM </div> <!-- Litecoin -->
@@ -84,7 +84,7 @@
                 </div>
             </div>
 
-            <div class="column col-6">
+            <div class="column col-md-6">
                 <div class="card flex-row">
                     <div class="card-header">
                         <img src="{{ asset("storage/chart.png")  }}" width="100" alt="dona en ether">
@@ -101,19 +101,11 @@
 
 
     </div> <!-- row -->
-
+<script type="text/javascript">
+    $( "#bienvenida" ).addClass('show');
+    $( "a.ocultar > i" ).toggle();
+</script>
     <script src="{{ asset('js/multas.js') }}" ></script>
     <script src="{{ asset('js/top10_one_card.js') }}" ></script>
 
-@endsection
-
-@section('footer')
-<footer class="text-muted" style="font-size:0.8em">
-      <div class="container">
-        <p class="float-right">
-          <a href="#">Ir Arriba</a>
-        </p>
-        <p>Multas Culiacán © 2018 </p>
-      </div>
-</footer>
 @endsection

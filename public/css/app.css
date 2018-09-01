@@ -1,11 +1,84 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+body {
+      background-color: #f9f9f9;
+}
+.titulo_lat {
+    border-left: solid 5px #ececec;
+    padding-left: 15px;
+}
+.bg-dark {
+    background-color: #9fa5ab!important;
+}
+.jumbotron {
+    background-color: #ffffff;
+}
+.bienvenida {
+    margin-top: 55px;
+    display: block;
+    padding: 2rem 0rem 0rem 0rem;
+}
+.card-footer {
+  color: #000;
+  opacity: .4;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #169db2;
+    border-color: #169db2;
+}
+.card-header i.fas {
+    margin-right: 5px;
+    padding-right: 10px;
+    border-right: 1px solid #ffffff4a;
+}
+.card-body {
+    overflow: hidden;
+}
+/** MODAL **/
+.modal-backdrop {
+   background: #000000b8;
+}
+/** FOOTER **/
+footer {
+    background: #FFF;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+footer a {
+  color: #9fa5ab;
+}
+footer a:hover {
+  text-decoration: none;
+  color: #636363;
+}
+footer i.fa-angle-up {
+    margin-top: -8px;
+    background: #FFF;
+    color: #ececec;
+    font-size: 1.5em;
+    padding: 6px 10px 8px;
+    border-radius: 5px;
+    border: 2px solid #ececec;
+    position: fixed;
+    right: 70px;
+    bottom: 40px;
+}
+@media only screen and (max-width:768px){
+  footer i.fa-angle-up {
+    right: 20px;
+  }
+}
+/**
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -183,7 +256,7 @@ td,
 th {
   padding: 0; }
 
-/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css
 @media print {
   *,
   *:before,
@@ -5766,4 +5839,6 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=app.css.map
+ 
+ */

@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ps
- * Date: 29/03/18
- * Time: 03:23
- */
+
+namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 

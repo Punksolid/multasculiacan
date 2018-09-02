@@ -40,6 +40,17 @@ body {
 .modal-backdrop {
    background: #000000b8;
 }
+/** PAGINATION **/
+.page-item.active .page-link {
+    background-color: #169db2;
+    border-color: #169db2;
+}
+.page-link {
+    color:#169db2;
+}
+.page-link:hover {
+    color: #097282;
+}
 /** FOOTER **/
 footer {
     background: #FFF;

@@ -96,8 +96,10 @@ vehiculo">
           </tbody>
         </table>
       </div> <!-- Tabla Responsive -->
-
+<nav aria-label="Navegador de Multas">
         {{ $multas->links() }}
+</nav>
+
 
     </div>
   </div>

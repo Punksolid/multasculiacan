@@ -153,4 +153,17 @@ class MultasController extends Controller
 
       return view('multas.index')->with('multas', $multas);
     }
+
+    public function top10conceptos()
+    {
+        $conceptos = \DB::table("conceptos")
+            ->select(\DB::raw('count(*) as total, concepto, descripcion'))
+            ->orderBy("total", "desc")
+            ->groupBy("concepto", "descripcion")
+            ->take(10)
+            ->get()
+            ->values();
+
+        return response()->json($conceptos);
+    }
 }

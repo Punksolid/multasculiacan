@@ -1,6 +1,6 @@
 
 new Vue({
-  el: '#messages',
+  el: '#folios',
 
   data: {
     someData:'0',

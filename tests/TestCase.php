@@ -1,25 +1,21 @@
 <?php
 
-abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
+namespace Tests;
+
+use Faker\Factory;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+
+abstract class TestCase extends BaseTestCase
 {
-    /**
-     * The base URL to use while testing the application.
-     *
-     * @var string
-     */
-    protected $baseUrl = 'http://localhost';
+    use CreatesApplication;
 
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
+    public $faker = null;
+
+
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
-        $app = require __DIR__.'/../bootstrap/app.php';
+        parent::__construct($name, $data, $dataName);
+        $this->faker = Factory::create();
 
-        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
-
-        return $app;
     }
 }

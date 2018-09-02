@@ -16,6 +16,9 @@ Route::resource('multas','MultasController');
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/acercade', function () {
+    return view('/acercade/index');
+});
 
 Route::get('local', function(\App\Multa $multa){
     dump($multa->get()->toArray());

@@ -15,4 +15,8 @@ class Multa extends Model
           'html',
         ];
 
+        public function conceptos()
+        {
+            return $this->hasMany(Concepto::class,"multa_id");
+        }
 }

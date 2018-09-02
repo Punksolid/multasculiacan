@@ -82,7 +82,7 @@
 </style>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark fixed-top">      
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">      
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="navbar-toggler-icon"></span>
           </button> <a class="navbar-brand pl-5" href="#"><img src="{{ asset("storage/MultasCuliacan.svg")  }}" width="150" alt="Multas Culiacán"></a>

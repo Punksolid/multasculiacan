@@ -6,12 +6,12 @@
 @endsection
 @section("content-title","Ver multas de la placa $multa->placa")
 @section('content')
-<div class="content">
+<div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 mx-auto">
             <div class="panel panel-default panel-body">
       <table class="table table-hover">
-        <thead>
+        <thead class="thead-dark">
         <tr>
           <th>
             Placa
@@ -33,11 +33,11 @@
         </tbody>
       </table>
         <table class="table table-bordered table-hover">
-            <thead>
+            <thead class="thead-light">
                 <tr>
                     <th>Concepto</th>
                     <th>Descripción</th>
-                    <th>Importe</th>
+                    <th width="120px" class="text-center">Importe</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +47,7 @@
                 <tr>
                     <th></th>
                     <th class="text-right">Total</th>
-                    <th>
+                    <th class="text-center">
                         {{ $multa->importe }}
                     </th>
                 </tr>
@@ -55,27 +55,28 @@
         </table>
 
       </div>
-      <div class="panel panel-default">
-        <div class="panel-title">
-          <strong>Otras multas de la misma placa</strong>
+
+      <div class="card mb-5">
+        <div class="card-header">
+          <h5 class="mb-0">Otras multas de la misma placa</h5>
         </div>
-        <div class="panel-body">
-          <table class="table">
+        <div class="card-body">
+          <table class="table table-sm"">
             <thead>
-            <tr>
-              <th>
-                Folio
-              </th>
-              <th>
-                Placa
-              </th>
-              <th>
-                Importe
-              </th>
-              <th>
-                Acciones
-              </th>
-            </tr>
+              <tr>
+                <th>
+                  Folio
+                </th>
+                <th>
+                  Placa
+                </th>
+                <th>
+                  Importe
+                </th>
+                <th>
+                  Acciones
+                </th>
+              </tr>
             </thead>
             <tbody>
             @forelse($otras_multas as $multa)
@@ -90,17 +91,19 @@
                   {{ $multa->importe }}
                 </td>
                 <td>
-                  <a class="btn btn-sm btn-default" href="{{ route('multas.show',[$multa->id]) }}" role="button">Ver</a>
+                  <a class="btn btn-sm btn-outline-secondary" href="{{ route('multas.show',[$multa->id]) }}" role="button">Ver</a>
                 </td>
               </tr>
             @empty
               <tr>
-                Nuestra base de datos no tiene registro de todas las multas, de momento no tiene otras registradas.
+                <p class="text-muted">Nuestra base de datos no tiene registro de todas las multas, de momento no tiene otras registradas.</p>
               </tr>
             @endforelse
             </tbody>
           </table>
+          
         </div>
+
       </div>
     </div>
   </div>

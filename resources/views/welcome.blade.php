@@ -44,7 +44,7 @@
 
                 <table class="table table-striped">
                     
-                    <h2 class="titulo_lat">TOP 10 DE PLACAS CON MAS MULTAS</h2>
+                    <h2 class="titulo_lat mt-4">TOP 10 DE PLACAS CON MAS MULTAS</h2>
                     <thead>
                         <tr>
                             <th scope="col">#</th>

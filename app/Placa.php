@@ -11,6 +11,12 @@ class Placa extends Model
 
     protected $table = null;
 
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
+
     /**
      * @param string $primaryKey
      */

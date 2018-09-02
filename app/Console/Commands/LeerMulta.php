@@ -2,12 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App\Concepto;
 use App\Multa;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\AssignOp\Mul;
+use Symfony\Component\DomCrawler\Crawler;
 
 class LeerMulta extends Command
 {
@@ -25,6 +27,7 @@ class LeerMulta extends Command
      */
     protected $description = 'Imprime el html de una multa';
     protected $ayuntamiento;
+
     /**
      * Create a new command instance.
      *
@@ -48,10 +51,10 @@ class LeerMulta extends Command
     {
         $client = new Client();
         $folio_number = $this->argument('folio');
-        if (Multa::whereFolio("J". $folio_number)->exists()
+        if (Multa::whereFolio("J" . $folio_number)->exists()
             OR
             DB::table("failed_attempts")->whereFolio($folio_number)->exists()
-        ){
+        ) {
 //            info("El folio ". $this->argument('folio'). "ya existe");
         } else {
             return $this->requestMultaInfo();
@@ -81,25 +84,44 @@ class LeerMulta extends Command
                 'importe' => $importe,
                 'redondeo' => $redondeo,
                 'multas_html' => $multas_html,
-                'html' =>  ""
+                'html' => ""
             ];
-//        $multa = Multa::firstOrCreate(
-//            ["folio" => $this->argument('folio')],
-//            $multa
-//        );
+
+            $re_process = new Crawler();
+            $re_process->addHtmlContent($multas_html);
+            $conceptos = $re_process->filter("div.detalle-boleta > tr")->each(function ($tr){
+                $concepto = $tr->filter("td")->eq(0)->html();
+                $descripcion = $tr->filter("td")->eq(1)->html();
+                $monto = str_replace(",","", $tr->filter("td")->eq(2)->html());
+                $monto = str_replace(".","", $monto);
+
+
+                return compact("concepto","descripcion","monto");
+            });
             $multa = Multa::create($multa);
 
-//            $this->info($multa->placa);
-//            $this->info($multa->folio);
-//            $this->info($multa->importe);
-//            $this->info($multa->redondeo);
-//            $this->info($multa->multas_html);
-//        $this->info($multa->html);
+            foreach ($conceptos as $concepto){
+
+                Concepto::forceCreate([
+                    "concepto" => $concepto["concepto"],
+                    "descripcion" => $concepto["descripcion"],
+                    "monto" => $concepto["monto"],
+
+                    "multa_id" => $multa->id,
+                    "folio" => $multa->folio,
+                    "created_at" => $multa->created_at,
+                    "updated_at" => $multa->updated_at
+                ]);
+            }
+
+
+
+
             return true;
 
         } catch (\Exception $e) {
             DB::table("failed_attempts")->updateOrInsert(
-                ['folio' => $this->argument('folio') ],
+                ['folio' => $this->argument('folio')],
                 ["folio" => $this->argument('folio'),
                     "created_at" => Carbon::now()]
             );

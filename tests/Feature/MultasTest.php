@@ -77,4 +77,18 @@ class MultasTest extends TestCase
         ]);
         $call->assertStatus(200);
     }
+
+
+    public function test_top10_conceptos_mas_populares()
+    {
+        $conceptos = \DB::table("conceptos")
+            ->select(\DB::raw('count(*) as total, concepto, descripcion'))
+            ->orderBy("total", "desc")
+            ->groupBy("concepto", "descripcion")
+            ->take(10)
+            ->get()
+            ->values();
+
+        dd($conceptos);
+    }
 }

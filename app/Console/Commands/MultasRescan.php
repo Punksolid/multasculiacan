@@ -35,8 +35,25 @@ class MultasRescan extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle($inicio ,$fin)
     {
-        //
+        $bar = $this->output->createProgressBar(($fin-$inicio));
+
+        $carbon = Carbon::now();
+        for ($folio = $inicio; $folio <= $fin ; $folio++) {
+            $output = $this->getOutput(
+                $this->call('multas:leer', [
+                    'folio' => $folio
+                ])
+
+            );
+
+            $bar->advance();
+        }
+        $bar->finish();
+
+        $this->comment('fin');
+        $this->comment($carbon->diffForHumans());
+
     }
 }

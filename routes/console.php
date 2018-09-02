@@ -17,9 +17,6 @@ use GuzzleHttp\Client;
 |
 */
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-});
 
 Artisan::command('multas:backup {inicio} {fin}', function ($inicio, $fin) {
   $bar = $this->output->createProgressBar(($fin-$inicio));

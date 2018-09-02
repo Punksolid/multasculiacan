@@ -7,3 +7,5 @@
  */
 
 Route::resource("placas", "Api\PlacasController")->only("show");
+
+Route::get("top10_conceptos", "MultasController@top10conceptos");

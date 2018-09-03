@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <ul class="pagination justify-content-center">
+    <ul class="pagination justify-content-center flex-wrap mt-3">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <li class="page-item disabled"><a href="#" class="page-link" aria-label="Anterior"><span aria-hidden="true">&laquo;</span><span class="sr-only">Anterior</span></a></li>
@@ -14,7 +14,7 @@
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
-                <li class="disabled"><span>{{ $element }}</span></li>
+                <li class="page-item disabled"><a class="page-link"><span>{{ $element }}</span></a></li>
             @endif
 
             {{-- Array Of Links --}}

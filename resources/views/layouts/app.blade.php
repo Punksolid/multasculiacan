@@ -141,7 +141,7 @@
           </div>
       </nav>
 
-      <section class="jumbotron bienvenida text-center">
+      <div class="jumbotron bienvenida text-center">
         <div class="container collapse mt-3" id="bienvenida">
           <h2>Bienvenido</h2>
             <div class="lead text-muted" style="font-size:0.9em;">
@@ -161,7 +161,7 @@
             <i class="fas fa-angle-up" style="display:none;"></i>
           </a>
 
-      </section>
+      </div>
 
     <script src="{{ asset('js/app.js')}}"></script>
 
@@ -197,7 +197,7 @@
         <p class="float-right">
           <a href="#"><i class="fas fa-angle-up"></i></a>
         </p>
-        <p>Multas Culiacán © 2018 / Todos los derechos reservados. - <a href="#colaboradores" role="button" data-toggle="modal" data-target="#colaboradores">Colaboradores</a></p>
+        <p class="text-center">Multas Culiacán © 2018 / Todos los derechos reservados. / <a href="#colaboradores" role="button" data-toggle="modal" data-target="#colaboradores">Colaboradores</a></p>
       </div>
 </footer>
 

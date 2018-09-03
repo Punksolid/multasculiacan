@@ -9,52 +9,52 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <div class="panel panel-default panel-body">
-      <table class="table table-hover">
-        <thead class="thead-dark">
-        <tr>
-          <th>
-            Placa
-          </th>
-          <th>
-            Folio
-          </th>
-          <th>
-            Id local
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ $multa->placa or "Sin placa" }}</td>
-            <td>{{ $multa->folio or "Error" }}</td>
-            <td>{{ $multa->id or "Error" }}</td>
-          </tr>
-        </tbody>
-      </table>
-        <table class="table table-bordered table-hover">
-            <thead class="thead-light">
+            <div class="detalle-placa">
+              <table class="table table-hover">
+                <thead class="thead-dark">
                 <tr>
-                    <th>Concepto</th>
-                    <th>Descripción</th>
-                    <th width="120px" class="text-center">Importe</th>
+                  <th>
+                    Placa
+                  </th>
+                  <th>
+                    Folio
+                  </th>
+                  <th>
+                    Id local
+                  </th>
                 </tr>
-            </thead>
-            <tbody>
-                {!! $multa->multas_html !!}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th></th>
-                    <th class="text-right">Total</th>
-                    <th class="text-center">
-                        {{ $multa->importe }}
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ $multa->placa or "Sin placa" }}</td>
+                    <td>{{ $multa->folio or "Error" }}</td>
+                    <td>{{ $multa->id or "Error" }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-bordered table-hover conceptos-placa">
+                  <thead class="thead-light">
+                      <tr>
+                          <th>Concepto</th>
+                          <th>Descripción</th>
+                          <th width="120px" class="text-center">Importe</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {!! $multa->multas_html !!}
+                  </tbody>
+                  <tfoot>
+                      <tr>
+                          <th></th>
+                          <th class="text-right">Total</th>
+                          <th class="text-center">
+                              {{ $multa->importe }}
+                          </th>
+                      </tr>
+                  </tfoot>
+              </table>
 
-      </div>
+            </div> <!-- detalle de placa -->
 
       <div class="card mb-5">
         <div class="card-header">

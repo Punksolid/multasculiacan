@@ -36,6 +36,13 @@ body {
 .card-body {
     overflow: hidden;
 }
+/* CONCEPTOS */
+.conceptos-placa tbody tr td:last-child {
+    text-align: center;
+}
+.conceptos-placa tbody tr td:last-child:before {
+    content: "$";
+}
 /** MODAL **/
 .modal-backdrop {
    background: #000000b8;

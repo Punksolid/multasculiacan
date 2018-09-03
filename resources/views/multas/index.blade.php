@@ -49,8 +49,9 @@ vehiculo">
 
     </div>
   </div>
+</div>
 
-
+<div class="container">
   <div class="row mb-5">
     <div class="col-md-10 mx-auto">
       <div class="table-responsive">
@@ -96,13 +97,12 @@ vehiculo">
           </tbody>
         </table>
       </div> <!-- Tabla Responsive -->
-<nav aria-label="Navegador de Multas">
-        {{ $multas->links() }}
-</nav>
-
+        <nav aria-label="Navegador de Multas">
+                {{ $multas->links() }}
+        </nav>
 
     </div>
   </div>
-
+  
 </div>
 @endsection

@@ -17,19 +17,29 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::get('top10', function(Request $request) {
-    return DB::table("multas")
-        ->select(DB::raw('count(*) as total, placa'))
-        ->orderBy("total", "desc")
-        ->groupBy("placa")
-        ->take(10)
-        ->get()
-        ->values();
+Route::get('top10', function (Request $request) {
+
+    $top10multas = Cache::remember("top10multas", 5, function () {
+        return DB::table("multas")
+            ->select(DB::raw('count(*) as total, placa'))
+            ->orderBy("total", "desc")
+            ->groupBy("placa")
+            ->take(10)
+            ->get()
+            ->values();
+    });
+
+    return $top10multas;
+
 
 });
 
-Route::get('not_found', function(Request $request) {
-    return DB::table("failed_attempts")
-        ->count();
+Route::get('not_found', function (Request $request) {
+    if (!Cache::has("failed_attempts")) {
+        Cache::put("failed_attempts", DB::table("failed_attempts")
+            ->count(), 5);
+    }
+
+    return Cache::get("failed_attempts");
 
 });

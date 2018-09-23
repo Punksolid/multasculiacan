@@ -23,9 +23,7 @@ Route::get('/acercade', function () {
 Route::get('local', function(\App\Multa $multa){
     dump($multa->get()->toArray());
 });
-Route::get('numero_demultas', function(\App\Multa $multa){
-    return Response::json($multa->count());
-});
+
 Route::get('count/{placa?}', function(\App\Multa $multa,$placa = null){
 
   $query = $multa

@@ -19,17 +19,19 @@ Route::get('/user', function (Request $request) {
 
 Route::get('top10', function (Request $request) {
 
-    $top10multas = Cache::remember("top10multas", 5, function () {
+
+    $top10placas_con_mas_multas = Cache::remember("top10multas", 5, function () {
         return DB::table("multas")
             ->select(DB::raw('count(*) as total, placa'))
             ->orderBy("total", "desc")
+            ->where("placa", "<>","")
             ->groupBy("placa")
             ->take(10)
             ->get()
             ->values();
     });
 
-    return $top10multas;
+    return $top10placas_con_mas_multas;
 
 
 });

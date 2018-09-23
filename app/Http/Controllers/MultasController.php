@@ -134,7 +134,6 @@ class MultasController extends Controller
                 ->take(10)
                 ->get()
                 ->values();
-
             return $conceptos;
 
         });

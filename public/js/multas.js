@@ -9,7 +9,7 @@ new Vue({
 
   methods:{
     fetchNumber:function() {
-        this.$http.get('numero_demultas').then((response) => {
+        this.$http.get('api/v1/numero_demultas').then((response) => {
             this.$set('someData', response.json())
             // success callback
         });

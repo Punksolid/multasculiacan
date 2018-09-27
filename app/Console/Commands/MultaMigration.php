@@ -14,7 +14,7 @@ class MultaMigration extends Command
      *
      * @var string
      */
-    protected $signature = 'multas:migration';
+    protected $signature = 'multas:migration {inicio} {fin}';
 
     /**
      * The console command description.
@@ -40,11 +40,14 @@ class MultaMigration extends Command
      */
     public function handle()
     {
-        $bar = $this->output->createProgressBar(Multa::count());
-
+        $inicio = $this->argument('inicio');
+        $fin = $this->argument('fin');
+        $bar = $this->output->createProgressBar(($fin-$inicio));
         ini_set('memory_limit', '2048M');
-        $multas = Multa::all();
-
+        $this->info($inicio);
+        $this->info($fin);
+        $multas = Multa::whereBetween("id",[$inicio,$fin])->get();
+        
         foreach ($multas as $multa){
             $bar->advance();
             $re_process = new Crawler();

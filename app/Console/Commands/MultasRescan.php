@@ -11,7 +11,7 @@ class MultasRescan extends Command
      *
      * @var string
      */
-    protected $signature = 'multas:rescan';
+    protected $signature = 'multas:rescan {inicio} {fin} ';
 
     /**
      * The console command description.

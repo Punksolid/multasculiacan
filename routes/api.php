@@ -30,8 +30,9 @@ Route::get('top10', function (Request $request) {
             ->get()
             ->values();
     });
+    
 
-    return $top10placas_con_mas_multas;
+    return response()->json(['data' => $top10placas_con_mas_multas]);
 
 
 });

@@ -138,7 +138,6 @@ class MultasController extends Controller
 
         });
 
-
         return response()->json($conceptos);
     }
 }

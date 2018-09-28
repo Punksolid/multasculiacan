@@ -12,7 +12,8 @@
         "laravel/tinker": "^1.0",
         "fabpot/goutte": "^3.2",
         "fideloper/proxy": "^4.0",
-        "venturecraft/revisionable": "^1.28"
+        "venturecraft/revisionable": "^1.28",
+        "barryvdh/laravel-cors": "^0.11.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

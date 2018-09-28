@@ -182,7 +182,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         TinkerServiceProvider::class,
-//        Barryvdh\Cors\ServiceProvider::class,
+      //  Barryvdh\Cors\ServiceProvider::class,
 
     ],
 

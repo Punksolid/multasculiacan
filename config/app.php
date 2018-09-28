@@ -181,9 +181,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        TinkerServiceProvider::class,
-      //  Barryvdh\Cors\ServiceProvider::class,
-
+        TinkerServiceProvider::class
     ],
 
     /*

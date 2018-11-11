@@ -37,8 +37,8 @@ class Kernel extends ConsoleKernel
                     '--force' => true
                  ]);
 
-         })->everyMinute();
-//             ->dailyAt('06:00');
+         })
+             ->dailyAt('06:00');
     }
 
     /**

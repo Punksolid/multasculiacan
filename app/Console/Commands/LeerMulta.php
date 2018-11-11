@@ -54,12 +54,10 @@ class LeerMulta extends Command
 
         $folio_number = $this->argument('folio');
         if ($this->option('force')){
-            if ($multa = Multa::whereFolio("J" . $folio_number)->first()){
-                if (!$multa->delete()){
-                    abort(500,"Error al borrar");
-                }
+            if (!Multa::whereFolio("J" . $folio_number)->exists()){
+                return $this->requestMultaInfo();
+
             }
-            return $this->requestMultaInfo();
         } else {
             if (Multa::whereFolio("J" . $folio_number)->exists()
                 OR

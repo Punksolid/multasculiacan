@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Multa;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,8 +25,19 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+         $schedule->call(function(){
+             $last_multa = Multa::orderBy('created_at','DESC')->first();
+             $start_folio = ltrim($last_multa->folio,'J');
+             $start_folio = $start_folio - 200;
+             $end_folio = $start_folio + 200;
+//             dd($start_folio, $end_folio, );
+             \Artisan::call('multas:backup',[
+                 'inicio' => $start_folio,
+                    'fin' => $end_folio,
+                    '--force' => true
+                 ]);
+         })->everyMinute();
+//             ->dailyAt('06:00');
     }
 
     /**

@@ -7,6 +7,11 @@ use App\Multa;
 use Illuminate\Console\Command;
 use Symfony\Component\DomCrawler\Crawler;
 
+/**
+ * Revisa dentro de las multas ya guardadas
+ * Class MultaMigration
+ * @package App\Console\Commands
+ */
 class MultaMigration extends Command
 {
     /**
@@ -43,7 +48,7 @@ class MultaMigration extends Command
         $inicio = $this->argument('inicio');
         $fin = $this->argument('fin');
         $bar = $this->output->createProgressBar(($fin-$inicio));
-        ini_set('memory_limit', '2048M');
+        ini_set('memory_limit', '1000');
         $this->info($inicio);
         $this->info($fin);
         $multas = Multa::whereBetween("id",[$inicio,$fin])->get();

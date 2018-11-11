@@ -18,7 +18,9 @@ class LeerMulta extends Command
      *
      * @var string
      */
-    protected $signature = 'multas:leer {folio}';
+    protected $signature = 'multas:leer {folio} 
+                            {--force} : Se salta si fue folio fallido o con resultado';
+
 
     /**
      * The console command description.
@@ -49,16 +51,19 @@ class LeerMulta extends Command
      */
     public function handle()
     {
-        $client = new Client();
-        $folio_number = $this->argument('folio');
-        if (Multa::whereFolio("J" . $folio_number)->exists()
-            OR
-            DB::table("failed_attempts")->whereFolio($folio_number)->exists()
-        ) {
-//            info("El folio ". $this->argument('folio'). "ya existe");
-        } else {
-            return $this->requestMultaInfo();
 
+        $folio_number = $this->argument('folio');
+        if ($this->option('force')){
+            return $this->requestMultaInfo();
+        } else {
+            if (Multa::whereFolio("J" . $folio_number)->exists()
+                OR
+                DB::table("failed_attempts")->whereFolio($folio_number)->exists()
+            ) {
+//            info("El folio ". $this->argument('folio'). "ya existe");
+            } else {
+                return $this->requestMultaInfo();
+            }
         }
 
     }

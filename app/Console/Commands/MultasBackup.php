@@ -48,10 +48,8 @@ class MultasBackup extends Command
                 $this->call('multas:leer', [
                     'folio' => $folio,
                     '--force' => $force
-                ])
-
-            );
-
+                ]));
+            
             $bar->advance();
         }
         $bar->finish();

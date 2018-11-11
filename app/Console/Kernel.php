@@ -36,6 +36,7 @@ class Kernel extends ConsoleKernel
                     'fin' => $end_folio,
                     '--force' => true
                  ]);
+
          })->everyMinute();
 //             ->dailyAt('06:00');
     }

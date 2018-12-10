@@ -12,7 +12,7 @@
     "laravel-elixir-vue": "0.1.8",
     "laravel-elixir-webpack-official": "1.0.10",
     "lodash": "4.17.11",
-    "vue": "1.0.28",
+    "vue": "2.5.20",
     "vue-resource": "0.9.3"
   }
 }

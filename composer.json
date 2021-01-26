@@ -11,7 +11,7 @@
         "laravelcollective/html": "5.7.1",
         "laravel/tinker": "1.0.8",
         "fabpot/goutte": "3.2.3",
-        "fideloper/proxy": "4.0.0",
+        "fideloper/proxy": "4.1.0",
         "venturecraft/revisionable": "1.28.0",
         "barryvdh/laravel-cors": "0.11.2"
     },

@@ -12,7 +12,7 @@
         "laravel/tinker": "1.0.8",
         "fabpot/goutte": "3.2.3",
         "fideloper/proxy": "4.0.0",
-        "venturecraft/revisionable": "1.28.0",
+        "venturecraft/revisionable": "1.30.1",
         "barryvdh/laravel-cors": "0.11.2"
     },
     "require-dev": {

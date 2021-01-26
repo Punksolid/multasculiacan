@@ -19,7 +19,7 @@
         "filp/whoops": "2.3.1",
         "fzaninotto/faker": "1.8.0",
         "mockery/mockery": "1.2.2",
-        "phpunit/phpunit": "7.4.3",
+        "phpunit/phpunit": "8.2.4",
         "symfony/css-selector": "3.1.10",
         "symfony/dom-crawler": "3.1.10",
         "laravel/dusk": "3.0.10",
